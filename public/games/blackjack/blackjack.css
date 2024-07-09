@@ -1,0 +1,31 @@
+.button {
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    font-size: 30px;
+}
+
+#hit {
+    background-color: green;
+}
+
+#stand {
+    background-color: red;
+}
+.button:hover {
+    border: 5px solid black;
+}
+
+#hit:active {
+    background-color: lightgreen;
+}
+
+#stand:active {
+    background-color: lightcoral;
+}
+
+#playing-field {
+    background-color: greenyellow;
+    width: 100px;
+
+}

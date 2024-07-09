@@ -1,0 +1,29 @@
+#top-title {
+    background-color: whitesmoke;
+    height: 120px;
+    width: 50%;
+    margin: 0 auto;
+    font-size: 25px;
+    border: 5px solid black;
+    border-radius: 10px;
+}
+
+#top-title h1 {
+    text-align: center;
+}
+
+#blackjackimg {
+    border: 5px black solid;
+}
+
+#row1 {
+    overflow-x:scroll;
+    grid-auto-columns: 10px;
+    display:inline;
+    float:left;
+    background-color: antiquewhite;
+    height: 300px;
+    padding: 25px;
+    text-align: center;
+    column-count: 6;
+}
