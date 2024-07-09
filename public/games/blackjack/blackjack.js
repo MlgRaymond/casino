@@ -186,6 +186,25 @@ function blackjack(bet) {
 
 // Example usage:
 
-var img = formatCard(5, "Diamonds")
-document.getElementById("player-cards").appendChild(img)
-blackjack(100);
+var img = formatCard(5, "Spades");
+var img2 = formatCard(5, "Hearts");
+img.width = 75;
+img2.width = 75;
+document.getElementById("player-cards").appendChild(img);
+document.getElementById("player-cards").appendChild(img2);
+
+let deck = new Deck();
+deck.shuffle()
+let hand = new Hand(deck);
+
+
+
+document.getElementById('hit').onclick = function() {
+  if (hand.hand.length > 0) {
+    hand.hand.pop();
+  }
+  hand.drawCard(deck);
+  var img = formatCard(hand.hand[0].value, hand.hand[0].suit);
+  img.width = 75;
+  document.getElementById("dealer-cards").appendChild(img);
+};
