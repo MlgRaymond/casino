@@ -1,5 +1,9 @@
-
-
+var buttonp = false
+let deck;
+let dHand;
+let pHand;
+var playing;
+var stand = false;
 class Card {
   constructor(value, suit) {
       this.value = value;
@@ -51,11 +55,13 @@ class Deck {
 
 class Hand {
   constructor() {
-      this.hand = [];
+    this.hand = [];
   }
 
   drawCard(deck) {
-      this.hand.push(deck.drawCard());
+    var card = deck.drawCard();
+    this.hand.push(card);
+    return card;
   }
 
   toString() {
@@ -118,93 +124,115 @@ function formatCard(value, suit) {
   img.alt = `${cardValue} of ${suit}`; // Alt text for accessibility
   return img
 }
+var playerHand = "player-cards";
+var dealerHand = "dealer-cards";
 
 var folder = "/cards";
-
+function displayMessage(message) {
+  document.getElementById("game-messages").innerText = message
+}
 function blackjack(bet) {
   console.log("Making deck...");
-  let deck = new Deck();
+  deck = new Deck();
   console.log("Shuffling...\n\n");
   deck.shuffle();
 
-  const dHand = new Hand();
-  const pHand = new Hand();
+  dHand = new Hand();
+  pHand = new Hand();
 
   // Initial deal
-  pHand.drawCard(deck);
-  pHand.drawCard(deck);
-  dHand.drawCard(deck);
+  var card1 = pHand.drawCard(deck);
+  var card2 = pHand.drawCard(deck);
+  var card3 = dHand.drawCard(deck);
 
+  displayCard(card1.value, card1.suit, playerHand);
+  displayCard(card2.value, card2.suit, playerHand);
+  displayCard(card3.value, card3.suit, dealerHand);
   console.log(`The dealer's hand is ${dHand.toString()} (Total: ${dHand.total()})`);
   console.log(`\nYour hand is ${pHand.toString()} (Total: ${pHand.total()})`);
+  document.getElementById("dealer-cards-message").innerText = "Dealer Cards (" + dHand.total() + ")";
 
   // Player's turn
-  while (pHand.total() <= 21) {
-    const option = prompt("Would you like to hit (h) or stand (s)?: ").toLowerCase();
-    if (option === "h") {
-      pHand.drawCard(deck);
-      console.log(`\nYour hand is now ${pHand.toString()} (Total: ${pHand.total()})`);
-    } else if (option === "s") {
-      break;
+  var interval = setInterval(function() {
+    document.getElementById("player-cards-message").innerText = "Your Cards (" + pHand.total() + ")";
+    if (pHand.total() <= 21  ) {
+      playing = true;
+      displayMessage(`Would you like to hit or stand? Total: ${pHand.total()}`);
+      if (stand) {
+        displayMessage("Player stood!");
+        playing = false;
+        dTurn();
+      }
+    } else {
+      playing = false;
+      displayMessage(`You busted at ${pHand.total()}`);
+      determineWinner();
+      clearInterval(interval);
     }
-  }
+  }, 100);
 
-
+  console.log("YAWDOAWDJWADOIAWJDOAWJAWOID");
+  setTimeout(displayMessage("Dealers turn!"), 1000);
   // Dealer's turn
-  console.log("\nDealer's turn:");
-  while (dHand.total() < 17) {
-    dHand.drawCard(deck);
-    console.log(`Dealer draws a card. Dealer's hand is now ${dHand.toString()} (Total: ${dHand.total()})`);
+  function dTurn() {
+    setInterval(function() {
+      document.getElementById("dealer-cards-message").innerText = "Dealer Cards (" + dHand.total() + ")";
+      if (dHand.total() < 17) {
+        var card = dHand.drawCard(deck);
+        displayCard(card.value, card.suit, dealerHand);
+        displayMessage(`Dealer draws a card. Dealer's hand is now ${dHand.toString()} (Total: ${dHand.total()})`);
+      } else {
+        clearInterval(interval);
+        determineWinner();
+        return;
+      }
+    }, 1000)
   }
-
   // Determine the outcome
-  const playerTotal = pHand.total();
-  const dealerTotal = dHand.total();
-
-  console.log(`\nYour hand: ${pHand.toString()} (Total: ${playerTotal})`);
-  console.log(`Dealer's hand: ${dHand.toString()} (Total: ${dealerTotal})`);
-
-  if (playerTotal > 21 && dealerTotal > 21) {
-    console.log("Draw. You keep your bet.")
-    return 0;
-  } else if (playerTotal > 21 && dealerTotal < 22) {
-    console.log("You lose! You lose your bet")
-  } else if (dealerTotal > 21 && playerTotal < 22) {
-    console.log("dealer bust you win double bet ayayya")
-  }
-  else if (dealerTotal > 21 || playerTotal > dealerTotal) {
-    console.log("You win! You double your bet.");
-    return bet;
-  } else if (playerTotal < dealerTotal) {
-    console.log("You lose! You lose your bet.");
-    return -bet;
-  } else {
-    console.log("Draw! You keep your bet.");
-    return 0;
+  function determineWinner() {    
+    var playerTotal = pHand.total();
+    var dealerTotal = dHand.total();
+    console.log(playerTotal + " " + dealerTotal)
+    if (playerTotal > 21) {
+      displayMessage("You busted! You lose your bet.")
+      return -bet;
+    } else if (dealerTotal > 21 && playerTotal < 22) {
+      displayMessage("dealer bust you win double bet ayayya");
+      return bet; 
+    } else if (playerTotal < dealerTotal) {
+      displayMessage("You lose! You lose your bet.");
+      return -bet;
+    } else if (playerTotal > dealerTotal) {
+      displayMessage("You win! You double your bet!");
+      return bet;
+    } else {
+      displayMessage("Draw! You keep your bet. -_-");
+      return 0;
+    }
   }
 }
 
+
 // Example usage:
 
-var img = formatCard(5, "Spades");
-var img2 = formatCard(5, "Hearts");
-img.width = 75;
-img2.width = 75;
-document.getElementById("player-cards").appendChild(img);
-document.getElementById("player-cards").appendChild(img2);
 
-let deck = new Deck();
-deck.shuffle()
-let hand = new Hand(deck);
-
-
+function displayCard(cardValue, cardSuit, hand) {
+  var img = formatCard(cardValue, cardSuit);
+  img.width = 75;
+  img.class = "cards";
+  document.getElementById(hand).appendChild(img);
+}
 
 document.getElementById('hit').onclick = function() {
-  if (hand.hand.length > 0) {
-    hand.hand.pop();
+  if (playing) {
+    pHand.drawCard(deck); 
+    displayCard(pHand.hand[pHand.hand.length - 1].value, pHand.hand[pHand.hand.length - 1].suit, playerHand);
+    buttonp = true;
   }
-  hand.drawCard(deck);
-  var img = formatCard(hand.hand[0].value, hand.hand[0].suit);
-  img.width = 75;
-  document.getElementById("dealer-cards").appendChild(img);
 };
+
+document.getElementById('stand').onclick = function () {
+  stand = true;
+}
+
+blackjack(100);
