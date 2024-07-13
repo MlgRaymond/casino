@@ -5,6 +5,10 @@
     font-size: 30px;
 }
 
+#restart {
+    width:205px;
+}
+
 #hit {
     background-color: green;
 }
@@ -12,16 +16,20 @@
 #stand {
     background-color: red;
 }
-.button:hover {
+.button:hover:enabled {
     border: 5px solid black;
 }
 
-#hit:active {
+#hit:active:enabled {
     background-color: lightgreen;
 }
 
-#stand:active {
+#stand:active:enabled {
     background-color: lightcoral;
+}
+
+#restart:active:enabled {
+    background-color: lightslategray    ;
 }
 
 #playing-field {

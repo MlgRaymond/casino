@@ -136,7 +136,9 @@ function blackjack(bet) {
   deck = new Deck();
   console.log("Shuffling...\n\n");
   deck.shuffle();
-
+  document.getElementById("hit").removeAttribute("disabled");
+  document.getElementById("stand").removeAttribute("disabled");
+  document.getElementById("restart").disabled = true;
   dHand = new Hand();
   pHand = new Hand();
 
@@ -192,6 +194,9 @@ function blackjack(bet) {
   function determineWinner() {    
     var playerTotal = pHand.total();
     var dealerTotal = dHand.total();
+    document.getElementById("hit").disabled = "true";
+    document.getElementById("stand").disabled = "true";
+    document.getElementById("restart").removeAttribute("disabled");
     console.log(playerTotal + " " + dealerTotal)
     if (playerTotal > 21) {
       displayMessage("You busted! You lose your bet.")
@@ -235,4 +240,10 @@ document.getElementById('stand').onclick = function () {
   stand = true;
 }
 
+
+
 blackjack(100);
+
+document.getElementById('restart').onclick = function () {
+  window.location.href = "blackjack.html";
+}
