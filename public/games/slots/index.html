@@ -1,39 +1,102 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Slots</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-    <div class="slots">
-        <div class="reel"></div>
-        <div class="reel"></div>
-        <div class="reel"></div>
-        <p>Cost per roll: XX</p>
-        <p>Balance: XX</p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slots</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="back">Back</button>
+    <div id="game">
+        <div class="slots">
+            <div class="reel"></div>
+            <div class="reel"></div>
+            <div class="reel"></div>
+            <p id="cost">Cost per roll: 10</p>
+            <p id="balance">Balance: XX</p>
+        </div>
+        <button id="spin">Spin!</button>
+        <div id="debug" class="debug"></div>
     </div>
-    <!-- MAKE SPIN BUTTON WORK -->
-<!-- ADD PAYOUTS -->
-
-    <button id="spin">Spin!</button>
-    <div id="debug" class="debug"></div>
-
-    <script src="index.js"></script>
-
-    <table display="none">
+    <br>
+    <br>
+    <br>
+    <div id="multiplier-div">
+        <p id="mult">Multiplier: XX</p>
+        <input type="number" id="multiplier" onfocus="this.value=''" min="1" max="1000000" value="1">
+    </div>
+    <table id="rewards">
+        <tr>
+            <th> Combinations </th>
+            <th> Base Reward </th>
+            <th> Multiplier </th>
+            <th> Reward </th>
+            <th> Probability</th>
+        </tr>
         <tr>
             <th>
-                wd
-            </th>
-            <th>
-                wdwd
+                <img src="imgs/chip.jpg" alt="chip">
+                <img src="imgs/chip.jpg" alt="chip">
+                <img src="imgs/chip.jpg" alt="chip">
             </th>
         </tr>
         <tr>
             <th>
-                wdwd
+                <img src="imgs/dude.jpg" alt="dude">
+                <img src="imgs/dude.jpg" alt="dude">
+                <img src="imgs/dude.jpg" alt="dude">
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <img src="imgs/originalzex.jpg" alt="originalzex">
+                <img src="imgs/originalzex.jpg" alt="originalzex">
+                <img src="imgs/originalzex.jpg" alt="originalzex">
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <img src="imgs/asian.jpg" alt="asian">
+                <img src="imgs/asian.jpg" alt="asian">
+                <img src="imgs/asian.jpg" alt="asian">
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <img src="imgs/skull.jpg" alt="skull">
+                <img src="imgs/skull.jpg" alt="skull">
+                <img src="imgs/skull.jpg" alt="skull">
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <img src="imgs/apple.jpg" alt="apple">
+                <img src="imgs/apple.jpg" alt="apple">
+                <img src="imgs/apple.jpg" alt="apple">
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <img src="imgs/slots.jpg" alt="slots">
+                <img src="imgs/slots.jpg" alt="slots">
+                <img src="imgs/slots.jpg" alt="slots">
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <img src="imgs/rizz.jpg" alt="rizz">
+                <img src="imgs/rizz.jpg" alt="rizz">
+                <img src="imgs/rizz.jpg" alt="rizz">
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <img src="imgs/towerdefense.jpg" alt="towerdefense">
+                <img src="imgs/towerdefense.jpg" alt="towerdefense">
+                <img src="imgs/towerdefense.jpg" alt="towerdefense">
             </th>
         </tr>
     </table>
-    </body>
+    <script src="index.js" defer></script>
+</body>
 </html>

@@ -1,29 +1,44 @@
+body {
+    
+    background-color: #121212;
+}
+
 #top-title {
-    background-color: whitesmoke;
-    height: 120px;
-    width: 50%;
-    margin: 0 auto;
-    font-size: 25px;
-    border: 5px solid black;
-    border-radius: 10px;
+    background-color: #1f1f1f;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid #333;
 }
 
 #top-title h1 {
     text-align: center;
+    color: white;
 }
 
 .icons {
     border: 5px black solid;
 }
 
-#row1 {
+.row {
     overflow-x:scroll;
     grid-auto-columns: 10px;
     display:inline;
     float:left;
-    background-color: antiquewhite;
+    background-color: #1f1f1f;
     height: 300px;
     padding: 25px;
     text-align: center;
     column-count: 6;
+}
+button {
+    background-color: #6200ea;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px 0;
 }

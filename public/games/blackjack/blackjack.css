@@ -1,43 +1,99 @@
-.button {
-    border-radius: 10px;
-    width: 100px;
-    height: 50px;
-    font-size: 30px;
+body {
+    background-color: #121212;
+}
+
+#top-title {
+    background-color: #1f1f1f;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid #333;
+}
+
+#top-title h1 {
+    text-align: center;
+    color: white;
 }
 
 #restart {
-    width:205px;
+    text-align: center;
 }
 
-#hit {
-    background-color: green;
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
-#stand {
-    background-color: red;
+.hidden {
+    display: none
 }
-.button:hover:enabled {
-    border: 5px solid black;
-}
-
-#hit:active:enabled {
-    background-color: lightgreen;
-}
-
-#stand:active:enabled {
-    background-color: lightcoral;
+#betting {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#restart:active:enabled {
-    background-color: lightslategray    ;
+#bet-amount {
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #1f1f1f;
+    color: white;
 }
 
-#playing-field {
-    background-color: greenyellow;
-    width: 100px;
-
+.cards-container {
+    background-color: #1f1f1f;
+    padding: 20px;
+    margin: 10px 0;
+    width: 80%;
+    border: 1px solid #333;
+    border-radius: 10px;
 }
 
-.cards {
-    padding-left: 10px;
+.cards-message {
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+.message-container {
+    background-color: #1f1f1f;
+    padding: 10px;
+    margin: 20px 0;
+    width: 80%;
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+}
+
+#actions {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.button {
+    background-color: #6200ea;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px 0;
+}
+
+.button:disabled {
+    background-color: #333;
+}
+
+#balance {
+    color: white;
 }

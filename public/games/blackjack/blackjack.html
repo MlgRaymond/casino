@@ -1,30 +1,35 @@
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <title>Blackjack</title>
-        <link rel="stylesheet" href="blackjack.css">
-        <script src="blackjack.js" defer></script>
-    </head>
-
-    <html>
-        <div id="game-container">
-            <div id="player-cards">
-                <p id="player-cards-message">Your Cards</p>
-            </div>
-
-            <div id="dealer-cards">
-                <p id="dealer-cards-message">Dealer Cards</p>
-            </div>
-
-            <div id="game-messages">
-                <p>Messages from game show here</p>
-            </div>
-            <div id="actions">
-                <button id="hit" class="button">Hit</button>
-                <button id="stand" class="button">Stand</button>
-            </div>
+<head>
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="blackjack.css">
+    <script src="blackjack.js" defer></script>
+</head>
+<body>
+    <div id="top-title">
+        <h1>Blackjack</h1>
+    </div>
+    <div id="game-container">
+    
+        <div id="betting">
+            <p id="balance">Your Balance: </p>
+            <input type="number" id="bet-amount" placeholder="Enter your bet" min="1">
+            <button id="submit-bet" class="button">Submit Bet</button>
         </div>
-        <button id="restart" class="button" disabled>Restart</button>
-    </html>
+        <div id="player-cards" class="cards-container hidden">
+            <p id="player-cards-message" class="cards-message">Your Cards</p>
+        </div>
+        <div id="dealer-cards" class="cards-container hidden">
+            <p id="dealer-cards-message" class="cards-message">Dealer Cards</p>
+        </div>
+        <div id="game-messages" class="message-container hidden">
+            <p>Messages from game show here</p>
+        </div>
+        <div id="actions">
+            <button id="hit" class="button hidden" disabled>Hit</button>
+            <button id="stand" class="button hidden" disabled>Stand</button>
+        </div>
+    </div>
+    <button id="restart" class="button hidden" disabled>Restart</button>
+</body>
 </html>
